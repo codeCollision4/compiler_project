@@ -11,4 +11,5 @@ flex projlex.l
 gcc lex.yy.c -o a.out 
 
 -Runs the program based on input in test_input.txt
+
 ./a.out 
