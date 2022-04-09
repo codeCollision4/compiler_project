@@ -4,7 +4,7 @@
 #include <string.h>
 #include <math.h>
 #include "y.tab.h"
-int yylex();
+int yylex(void);
 int yywrap();
 int yyerror(char* str);
 %}
@@ -32,13 +32,19 @@ int yyerror(char* str);
 
  /* parser rules */
 program: PROGRAM declarations BEG statementSequence END;
-declarations: VAR IDENT AS type SC declarations | ;
+declarations: 
+ /* empty */
+| VAR IDENT AS type SC declarations;
 type: INT | BOOL;
-statementSequence: statement SC statementSequence | ;
+statementSequence: 
+ /* empty */
+| statement SC statementSequence;
 statement: assignment | ifStatement | whileStatement | writeInt;
 assignment: IDENT ASGN expression | IDENT ASGN READINT;
 ifStatement: IF expression THEN statementSequence elseClause END;
-elseClause: ELSE statementSequence | ;
+elseClause: 
+ /* empty */
+| ELSE statementSequence;
 whileStatement: WHILE expression DO statementSequence END;
 writeInt: WRITEINT expression;
 expression: simpleExpression | simpleExpression OP4 simpleExpression;
@@ -48,8 +54,6 @@ factor: IDENT | NUM | BOOLLIT | LP expression RP;
 
 
 %%
-
- /* C Function bodies/main runs yyparse */
 
 int main()
 {

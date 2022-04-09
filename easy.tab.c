@@ -67,18 +67,13 @@
 
 
 /* First part of user prologue.  */
-#line 1 "proj.yacc"
+#line 1 "easy.y"
 
-    /* definitions */  
 #include <stdio.h>
-#include <string.h>
-#include <math.h>
-#include "y.tab.h"
-int yylex();
-int yywrap();
-int yyerror(char* str);
+int yylex(void);
+int yyerror(char *);
 
-#line 82 "proj.tab.cacc"
+#line 77 "easy.tab.c"
 
 # ifndef YY_CAST
 #  ifdef __cplusplus
@@ -101,75 +96,7 @@ int yyerror(char* str);
 #  endif
 # endif
 
-
-/* Debug traces.  */
-#ifndef YYDEBUG
-# define YYDEBUG 0
-#endif
-#if YYDEBUG
-extern int yydebug;
-#endif
-
-/* Token kinds.  */
-#ifndef YYTOKENTYPE
-# define YYTOKENTYPE
-  enum yytokentype
-  {
-    YYEMPTY = -2,
-    YYEOF = 0,                     /* "end of file"  */
-    YYerror = 256,                 /* error  */
-    YYUNDEF = 257,                 /* "invalid token"  */
-    NUM = 258,                     /* NUM  */
-    INT = 259,                     /* INT  */
-    BOOL = 260,                    /* BOOL  */
-    BOOLLIT = 261,                 /* BOOLLIT  */
-    IDENT = 262,                   /* IDENT  */
-    LP = 263,                      /* LP  */
-    RP = 264,                      /* RP  */
-    ASGN = 265,                    /* ASGN  */
-    SC = 266,                      /* SC  */
-    OP2 = 267,                     /* OP2  */
-    OP3 = 268,                     /* OP3  */
-    OP4 = 269,                     /* OP4  */
-    WRITEINT = 270,                /* WRITEINT  */
-    READINT = 271,                 /* READINT  */
-    IF = 272,                      /* IF  */
-    THEN = 273,                    /* THEN  */
-    ELSE = 274,                    /* ELSE  */
-    BEG = 275,                     /* BEG  */
-    END = 276,                     /* END  */
-    WHILE = 277,                   /* WHILE  */
-    DO = 278,                      /* DO  */
-    PROGRAM = 279,                 /* PROGRAM  */
-    VAR = 280,                     /* VAR  */
-    AS = 281                       /* AS  */
-  };
-  typedef enum yytokentype yytoken_kind_t;
-#endif
-
-/* Value type.  */
-#if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-union YYSTYPE
-{
-#line 16 "proj.yacc"
- int num; char* str; 
-
-#line 158 "proj.tab.cacc"
-
-};
-typedef union YYSTYPE YYSTYPE;
-# define YYSTYPE_IS_TRIVIAL 1
-# define YYSTYPE_IS_DECLARED 1
-#endif
-
-
-extern YYSTYPE yylval;
-
-
-int yyparse (void);
-
-
-
+#include "easy.tab.h"
 /* Symbol kind.  */
 enum yysymbol_kind_t
 {
@@ -604,9 +531,9 @@ static const yytype_int8 yytranslate[] =
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int8 yyrline[] =
 {
-       0,    34,    34,    35,    35,    36,    36,    37,    37,    38,
-      38,    38,    38,    39,    39,    40,    41,    41,    42,    43,
-      44,    44,    45,    45,    46,    46,    47,    47,    47,    47
+       0,    21,    21,    22,    22,    23,    23,    24,    24,    25,
+      25,    25,    25,    26,    26,    27,    28,    28,    29,    30,
+      31,    31,    32,    32,    33,    33,    34,    34,    34,    34
 };
 #endif
 
@@ -1197,7 +1124,7 @@ yyreduce:
   switch (yyn)
     {
 
-#line 1201 "proj.tab.cacc"
+#line 1128 "easy.tab.c"
 
       default: break;
     }
@@ -1390,16 +1317,14 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 50 "proj.yacc"
+#line 37 "easy.y"
 
-
- /* C Function bodies/main runs yyparse */
-
-int main()
-{
-    printf("Compilation Started: \n\n");
-    int res = yyparse();
-    printf("Compilation Ended...");
-    return res;
-
+int yyerror(char *s) {
+  printf("yyerror : %s\n",s);
+}
+int main(void) {
+  yyparse();
+   printf("SUCCESS\n");
+}
+int yywrap() {
 }

@@ -1,12 +1,12 @@
 ex: exd
-		lex proj.lex
-		yacc proj.yacc
-		gcc y.tab.c lex.yy.c -o ex -v
+		lex proj.l
+		yacc proj.y
+		gcc proj.tab.c lex.yy.c -o ex
 
-exd:	proj.lex proj.yacc
-		lex -d proj.lex
-		yacc -d proj.yacc
-		gcc y.tab.c lex.yy.c -o exd -v
+exd:	proj.l proj.y
+		lex -d proj.l
+		yacc -d proj.y
+		gcc proj.tab.c lex.yy.c -o exd
 	
 clean:
 		rm -f y.tab.c y.tab.h lex.yy.c exd ex

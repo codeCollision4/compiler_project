@@ -35,8 +35,8 @@
    especially those whose name start with YY_ or yy_.  They are
    private implementation details that can be changed or removed.  */
 
-#ifndef YY_YY_Y_TAB_H_INCLUDED
-# define YY_YY_Y_TAB_H_INCLUDED
+#ifndef YY_YY_BISON_TAB_H_INCLUDED
+# define YY_YY_BISON_TAB_H_INCLUDED
 /* Debug traces.  */
 #ifndef YYDEBUG
 # define YYDEBUG 0
@@ -54,71 +54,23 @@ extern int yydebug;
     YYEOF = 0,                     /* "end of file"  */
     YYerror = 256,                 /* error  */
     YYUNDEF = 257,                 /* "invalid token"  */
-    NUM = 258,                     /* NUM  */
-    INT = 259,                     /* INT  */
-    BOOL = 260,                    /* BOOL  */
-    BOOLLIT = 261,                 /* BOOLLIT  */
-    IDENT = 262,                   /* IDENT  */
-    LP = 263,                      /* LP  */
-    RP = 264,                      /* RP  */
-    ASGN = 265,                    /* ASGN  */
-    SC = 266,                      /* SC  */
-    OP2 = 267,                     /* OP2  */
-    OP3 = 268,                     /* OP3  */
-    OP4 = 269,                     /* OP4  */
-    WRITEINT = 270,                /* WRITEINT  */
-    READINT = 271,                 /* READINT  */
-    IF = 272,                      /* IF  */
-    THEN = 273,                    /* THEN  */
-    ELSE = 274,                    /* ELSE  */
-    BEG = 275,                     /* BEG  */
-    END = 276,                     /* END  */
-    WHILE = 277,                   /* WHILE  */
-    DO = 278,                      /* DO  */
-    PROGRAM = 279,                 /* PROGRAM  */
-    VAR = 280,                     /* VAR  */
-    AS = 281                       /* AS  */
+    IDENTIFIER = 258,              /* IDENTIFIER  */
+    PROCEDURE = 259,               /* PROCEDURE  */
+    BLOCK = 260,                   /* BLOCK  */
+    ENDBLOCK = 261                 /* ENDBLOCK  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
-/* Token kinds.  */
-#define YYEMPTY -2
-#define YYEOF 0
-#define YYerror 256
-#define YYUNDEF 257
-#define NUM 258
-#define INT 259
-#define BOOL 260
-#define BOOLLIT 261
-#define IDENT 262
-#define LP 263
-#define RP 264
-#define ASGN 265
-#define SC 266
-#define OP2 267
-#define OP3 268
-#define OP4 269
-#define WRITEINT 270
-#define READINT 271
-#define IF 272
-#define THEN 273
-#define ELSE 274
-#define BEG 275
-#define END 276
-#define WHILE 277
-#define DO 278
-#define PROGRAM 279
-#define VAR 280
-#define AS 281
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 16 "proj.y"
- int num; char* str; 
+#line 9 "bison.y"
 
-#line 122 "y.tab.h"
+        char    *sval;
+
+#line 74 "bison.tab.h"
 
 };
 typedef union YYSTYPE YYSTYPE;
@@ -133,4 +85,4 @@ extern YYSTYPE yylval;
 int yyparse (void);
 
 
-#endif /* !YY_YY_Y_TAB_H_INCLUDED  */
+#endif /* !YY_YY_BISON_TAB_H_INCLUDED  */

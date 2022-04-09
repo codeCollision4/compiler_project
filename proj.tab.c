@@ -67,18 +67,18 @@
 
 
 /* First part of user prologue.  */
-#line 1 "proj.yacc"
+#line 1 "proj.y"
 
     /* definitions */  
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
 #include "y.tab.h"
-int yylex();
+int yylex(void);
 int yywrap();
 int yyerror(char* str);
 
-#line 82 "proj.tab.cacc"
+#line 82 "proj.tab.c"
 
 # ifndef YY_CAST
 #  ifdef __cplusplus
@@ -101,75 +101,7 @@ int yyerror(char* str);
 #  endif
 # endif
 
-
-/* Debug traces.  */
-#ifndef YYDEBUG
-# define YYDEBUG 0
-#endif
-#if YYDEBUG
-extern int yydebug;
-#endif
-
-/* Token kinds.  */
-#ifndef YYTOKENTYPE
-# define YYTOKENTYPE
-  enum yytokentype
-  {
-    YYEMPTY = -2,
-    YYEOF = 0,                     /* "end of file"  */
-    YYerror = 256,                 /* error  */
-    YYUNDEF = 257,                 /* "invalid token"  */
-    NUM = 258,                     /* NUM  */
-    INT = 259,                     /* INT  */
-    BOOL = 260,                    /* BOOL  */
-    BOOLLIT = 261,                 /* BOOLLIT  */
-    IDENT = 262,                   /* IDENT  */
-    LP = 263,                      /* LP  */
-    RP = 264,                      /* RP  */
-    ASGN = 265,                    /* ASGN  */
-    SC = 266,                      /* SC  */
-    OP2 = 267,                     /* OP2  */
-    OP3 = 268,                     /* OP3  */
-    OP4 = 269,                     /* OP4  */
-    WRITEINT = 270,                /* WRITEINT  */
-    READINT = 271,                 /* READINT  */
-    IF = 272,                      /* IF  */
-    THEN = 273,                    /* THEN  */
-    ELSE = 274,                    /* ELSE  */
-    BEG = 275,                     /* BEG  */
-    END = 276,                     /* END  */
-    WHILE = 277,                   /* WHILE  */
-    DO = 278,                      /* DO  */
-    PROGRAM = 279,                 /* PROGRAM  */
-    VAR = 280,                     /* VAR  */
-    AS = 281                       /* AS  */
-  };
-  typedef enum yytokentype yytoken_kind_t;
-#endif
-
-/* Value type.  */
-#if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-union YYSTYPE
-{
-#line 16 "proj.yacc"
- int num; char* str; 
-
-#line 158 "proj.tab.cacc"
-
-};
-typedef union YYSTYPE YYSTYPE;
-# define YYSTYPE_IS_TRIVIAL 1
-# define YYSTYPE_IS_DECLARED 1
-#endif
-
-
-extern YYSTYPE yylval;
-
-
-int yyparse (void);
-
-
-
+#include "proj.tab.h"
 /* Symbol kind.  */
 enum yysymbol_kind_t
 {
@@ -1197,7 +1129,7 @@ yyreduce:
   switch (yyn)
     {
 
-#line 1201 "proj.tab.cacc"
+#line 1133 "proj.tab.c"
 
       default: break;
     }
@@ -1390,10 +1322,8 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 50 "proj.yacc"
+#line 50 "proj.y"
 
-
- /* C Function bodies/main runs yyparse */
 
 int main()
 {

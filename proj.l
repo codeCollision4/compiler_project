@@ -22,7 +22,8 @@ WHITESPACE [ \t\n]+
 
 ({DIGIT})+  { printf("%s (%d) - num\n", yytext, atoi(yytext)); col+=strlen(yytext); yylval.num=atoi(yytext); return (NUM); }
 false|true { printf("%s - boollit\n", yytext); col+=strlen(yytext); if (strcmp(yytext, "false") == 0) yylval.num = 0; if (strcmp(yytext, "true") == 0) yylval.num = 1; return (BOOLLIT); }
-{ID} { printf("%s - ident\n", yytext); col+=strlen(yytext); strcpy(yylval.str, yytext); return (IDENT);}
+{ID} { printf("%s - ident\n", yytext);  return (IDENT);}
+    /* col+=strlen(yytext); strcpy(yylval.str, yytext); */
 
 
 "(" { printf("%s - LP\n", yytext); return (LP);}
@@ -78,15 +79,3 @@ int yyerror(char* str){
     return (1);
 }
 
-int main() {
-
-    // Reading from file
-    FILE *fp;
-    fp = fopen("test_input.txt","r");
-    yyin = fp;
-
-    // Running rules
-    yylex();
-
-    return 0;
-}

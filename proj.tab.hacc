@@ -1,14 +1,14 @@
-/* A Bison parser, made by GNU Bison 2.3.  */
+/* A Bison parser, made by GNU Bison 3.8.2.  */
 
-/* Skeleton interface for Bison's Yacc-like parsers in C
+/* Bison interface for Yacc-like parsers in C
 
-   Copyright (C) 1984, 1989, 1990, 2000, 2001, 2002, 2003, 2004, 2005, 2006
-   Free Software Foundation, Inc.
+   Copyright (C) 1984, 1989-1990, 2000-2015, 2018-2021 Free Software Foundation,
+   Inc.
 
-   This program is free software; you can redistribute it and/or modify
+   This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
-   the Free Software Foundation; either version 2, or (at your option)
-   any later version.
+   the Free Software Foundation, either version 3 of the License, or
+   (at your option) any later version.
 
    This program is distributed in the hope that it will be useful,
    but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -16,9 +16,7 @@
    GNU General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program; if not, write to the Free Software
-   Foundation, Inc., 51 Franklin Street, Fifth Floor,
-   Boston, MA 02110-1301, USA.  */
+   along with this program.  If not, see <https://www.gnu.org/licenses/>.  */
 
 /* As a special exception, you may create a larger work that contains
    part or all of the Bison parser skeleton and distribute that work
@@ -33,76 +31,77 @@
    This special exception was added by the Free Software Foundation in
    version 2.2 of Bison.  */
 
-/* Tokens.  */
+/* DO NOT RELY ON FEATURES THAT ARE NOT DOCUMENTED in the manual,
+   especially those whose name start with YY_ or yy_.  They are
+   private implementation details that can be changed or removed.  */
+
+#ifndef YY_YY_PROJ_TAB_HACC_INCLUDED
+# define YY_YY_PROJ_TAB_HACC_INCLUDED
+/* Debug traces.  */
+#ifndef YYDEBUG
+# define YYDEBUG 0
+#endif
+#if YYDEBUG
+extern int yydebug;
+#endif
+
+/* Token kinds.  */
 #ifndef YYTOKENTYPE
 # define YYTOKENTYPE
-   /* Put the tokens into the symbol table, so that GDB and other debuggers
-      know about them.  */
-   enum yytokentype {
-     NUM = 258,
-     INT = 259,
-     BOOL = 260,
-     IDENT = 261,
-     LP = 262,
-     RP = 263,
-     ASGN = 264,
-     SC = 265,
-     OP2 = 266,
-     OP3 = 267,
-     OP4 = 268,
-     WRITEINT = 269,
-     READINT = 270,
-     IF = 271,
-     THEN = 272,
-     ELSE = 273,
-     BEGIN = 274,
-     END = 275,
-     WHILE = 276,
-     DO = 277,
-     PROGRAM = 278,
-     VAR = 279,
-     AS = 280
-   };
+  enum yytokentype
+  {
+    YYEMPTY = -2,
+    YYEOF = 0,                     /* "end of file"  */
+    YYerror = 256,                 /* error  */
+    YYUNDEF = 257,                 /* "invalid token"  */
+    NUM = 258,                     /* NUM  */
+    INT = 259,                     /* INT  */
+    BOOL = 260,                    /* BOOL  */
+    BOOLLIT = 261,                 /* BOOLLIT  */
+    IDENT = 262,                   /* IDENT  */
+    LP = 263,                      /* LP  */
+    RP = 264,                      /* RP  */
+    ASGN = 265,                    /* ASGN  */
+    SC = 266,                      /* SC  */
+    OP2 = 267,                     /* OP2  */
+    OP3 = 268,                     /* OP3  */
+    OP4 = 269,                     /* OP4  */
+    WRITEINT = 270,                /* WRITEINT  */
+    READINT = 271,                 /* READINT  */
+    IF = 272,                      /* IF  */
+    THEN = 273,                    /* THEN  */
+    ELSE = 274,                    /* ELSE  */
+    BEG = 275,                     /* BEG  */
+    END = 276,                     /* END  */
+    WHILE = 277,                   /* WHILE  */
+    DO = 278,                      /* DO  */
+    PROGRAM = 279,                 /* PROGRAM  */
+    VAR = 280,                     /* VAR  */
+    AS = 281                       /* AS  */
+  };
+  typedef enum yytokentype yytoken_kind_t;
 #endif
-/* Tokens.  */
-#define NUM 258
-#define INT 259
-#define BOOL 260
-#define IDENT 261
-#define LP 262
-#define RP 263
-#define ASGN 264
-#define SC 265
-#define OP2 266
-#define OP3 267
-#define OP4 268
-#define WRITEINT 269
-#define READINT 270
-#define IF 271
-#define THEN 272
-#define ELSE 273
-#define BEGIN 274
-#define END 275
-#define WHILE 276
-#define DO 277
-#define PROGRAM 278
-#define VAR 279
-#define AS 280
 
-
-
-
+/* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-typedef union YYSTYPE
+union YYSTYPE
+{
 #line 16 "proj.yacc"
-{ int num; char* str; }
-/* Line 1529 of yacc.c.  */
-#line 101 "proj.tab.hacc"
-	YYSTYPE;
-# define yystype YYSTYPE /* obsolescent; will be withdrawn */
-# define YYSTYPE_IS_DECLARED 1
+ int num; char* str; 
+
+#line 93 "proj.tab.hacc"
+
+};
+typedef union YYSTYPE YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
+# define YYSTYPE_IS_DECLARED 1
 #endif
+
 
 extern YYSTYPE yylval;
 
+
+int yyparse (void);
+
+
+#endif /* !YY_YY_PROJ_TAB_HACC_INCLUDED  */
