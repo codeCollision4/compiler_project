@@ -431,8 +431,8 @@ static void yynoreturn yy_fatal_error ( const char* msg  );
 /* %% [3.0] code to copy yytext_ptr to yytext[] goes here, if %array \ */\
 	(yy_c_buf_p) = yy_cp;
 /* %% [4.0] data tables for the DFA and the user's section 1 definitions go here */
-#define YY_NUM_RULES 28
-#define YY_END_OF_BUFFER 29
+#define YY_NUM_RULES 29
+#define YY_END_OF_BUFFER 30
 /* This struct is not used in this scanner,
    but its presence is necessary. */
 struct yy_trans_info
@@ -442,10 +442,10 @@ struct yy_trans_info
 	};
 static const flex_int16_t yy_accept[94] =
     {   0,
-        0,    0,   29,   27,   26,   26,   27,    4,    5,    8,
-        9,    1,   27,    7,   10,   10,   10,    3,   27,   27,
-       27,   27,   27,   27,   27,   27,   27,   27,   27,   27,
-       27,   26,   10,    1,    6,    3,   22,    0,    0,    0,
+        0,    0,   30,   28,   27,   26,   28,    4,    5,    8,
+        9,    1,   28,    7,   10,   10,   10,    3,   28,   28,
+       28,   28,   28,   28,   28,   28,   28,   28,   28,   28,
+       28,   27,   10,    1,    6,    3,   22,    0,    0,    0,
        19,    0,    0,    0,   13,    0,    0,    0,    0,    0,
         0,    0,    0,    0,    0,   25,    0,    0,    8,    0,
        17,    0,   23,    0,    0,    0,    0,   21,    0,    0,
@@ -573,11 +573,11 @@ static char *yy_last_accepting_cpos;
 extern int yy_flex_debug;
 int yy_flex_debug = 1;
 
-static const flex_int16_t yy_rule_linenum[28] =
+static const flex_int16_t yy_rule_linenum[29] =
     {   0,
-       23,   24,   25,   28,   29,   30,   31,   32,   33,   34,
-       36,   37,   39,   40,   41,   42,   43,   44,   45,   46,
-       47,   48,   49,   50,   53,   56,   59
+       24,   25,   26,   29,   30,   31,   32,   33,   34,   35,
+       37,   38,   40,   41,   42,   43,   44,   45,   46,   47,
+       48,   49,   50,   51,   54,   57,   60,   65
     } ;
 
 /* The intent behind this definition is that it'll catch
@@ -588,19 +588,20 @@ static const flex_int16_t yy_rule_linenum[28] =
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "projlex.l"
-#line 2 "projlex.l"
+#line 1 "proj.lex"
+#line 2 "proj.lex"
     /* definitions */  
 #include <stdio.h>
-#include <math.h>  
+#include <math.h>
+#include "y.tab.h"
 extern YYSTYPE yylval;
 int yywrap();
-int yyerror(char* s);
+int yyerror(char* str);
 int col=0;
 int row=0;
 int idents=0;
-#line 602 "lex.yy.c"
 #line 603 "lex.yy.c"
+#line 604 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -880,13 +881,13 @@ YY_DECL
 
 	{
 /* %% [7.0] user's declarations go here */
-#line 18 "projlex.l"
+#line 19 "proj.lex"
 
-#line 20 "projlex.l"
+#line 21 "proj.lex"
     /* Rules */
 
 
-#line 889 "lex.yy.c"
+#line 890 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -944,13 +945,13 @@ do_action:	/* This label is used only to access EOF actions. */
 			{
 			if ( yy_act == 0 )
 				fprintf( stderr, "--scanner backing up\n" );
-			else if ( yy_act < 28 )
+			else if ( yy_act < 29 )
 				fprintf( stderr, "--accepting rule at line %ld (\"%s\")\n",
 				         (long)yy_rule_linenum[yy_act], yytext );
-			else if ( yy_act == 28 )
+			else if ( yy_act == 29 )
 				fprintf( stderr, "--accepting default rule (\"%s\")\n",
 				         yytext );
-			else if ( yy_act == 29 )
+			else if ( yy_act == 30 )
 				fprintf( stderr, "--(end of buffer or a NUL)\n" );
 			else
 				fprintf( stderr, "--EOF (start condition %d)\n", YY_START );
@@ -968,153 +969,160 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 23 "projlex.l"
-{ printf("%s (%d) - num\n", yytext, atoi(yytext)); col+=strlen(yytext); yylval.num=atoi(yytext); return (num) }
+#line 24 "proj.lex"
+{ printf("%s (%d) - num\n", yytext, atoi(yytext)); col+=strlen(yytext); yylval.num=atoi(yytext); return (NUM); }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 24 "projlex.l"
-{ printf("%s - boollit\n", yytext); col+=strlen(yytext); yylval.str=yytext; return (boollit) }
+#line 25 "proj.lex"
+{ printf("%s - boollit\n", yytext); col+=strlen(yytext); if (strcmp(yytext, "false") == 0) yylval.num = 0; if (strcmp(yytext, "true") == 0) yylval.num = 1; return (BOOLLIT); }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 25 "projlex.l"
-{ printf("%s - ident\n", yytext); col+=strlen(yytext); strcpy(yylval, yytext); return (ident)}
+#line 26 "proj.lex"
+{ printf("%s - ident\n", yytext); col+=strlen(yytext); strcpy(yylval.str, yytext); return (IDENT);}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 28 "projlex.l"
-{ printf("%s - LP\n", yytext); }
+#line 29 "proj.lex"
+{ printf("%s - LP\n", yytext); return (LP);}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 29 "projlex.l"
-{ printf("%s - RP\n", yytext); }
+#line 30 "proj.lex"
+{ printf("%s - RP\n", yytext); return (RP);}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 30 "projlex.l"
-{ printf("%s - ASGN\n", yytext); }
+#line 31 "proj.lex"
+{ printf("%s - ASGN\n", yytext); return (ASGN);}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 31 "projlex.l"
-{ printf("%s - SC\n", yytext); }
+#line 32 "proj.lex"
+{ printf("%s - SC\n", yytext); return (SC);}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 32 "projlex.l"
-{ printf("%s - OP2\n", yytext); }
+#line 33 "proj.lex"
+{ printf("%s - OP2\n", yytext); return (OP2);}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 33 "projlex.l"
-{ printf("%s - OP3\n", yytext); }
+#line 34 "proj.lex"
+{ printf("%s - OP3\n", yytext); return (OP3);}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 34 "projlex.l"
-{ printf("%s - OP4\n", yytext); }
+#line 35 "proj.lex"
+{ printf("%s - OP4\n", yytext); return (OP4);}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 36 "projlex.l"
-{ printf("%s - WRITEINT\n", yytext); }
+#line 37 "proj.lex"
+{ printf("%s - WRITEINT\n", yytext); return (WRITEINT);}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 37 "projlex.l"
-{ printf("%s - READINT\n", yytext); }
+#line 38 "proj.lex"
+{ printf("%s - READINT\n", yytext); return (READINT);}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 39 "projlex.l"
-{ printf("%s - IF\n", yytext); }
+#line 40 "proj.lex"
+{ printf("%s - IF\n", yytext); return (IF);}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 40 "projlex.l"
-{ printf("%s - THEN\n", yytext); }
+#line 41 "proj.lex"
+{ printf("%s - THEN\n", yytext); return (THEN);}
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 41 "projlex.l"
-{ printf("%s - ELSE\n", yytext); }
+#line 42 "proj.lex"
+{ printf("%s - ELSE\n", yytext); return (ELSE);}
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 42 "projlex.l"
-{ printf("%s - BEGIN\n", yytext); }
+#line 43 "proj.lex"
+{ printf("%s - BEGIN\n", yytext); return (BEG);}
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 43 "projlex.l"
-{ printf("%s - END\n", yytext); }
+#line 44 "proj.lex"
+{ printf("%s - END\n", yytext); return (END);}
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 44 "projlex.l"
-{ printf("%s - WHILE\n", yytext); }
+#line 45 "proj.lex"
+{ printf("%s - WHILE\n", yytext); return (WHILE);}
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 45 "projlex.l"
-{ printf("%s - DO\n", yytext); }
+#line 46 "proj.lex"
+{ printf("%s - DO\n", yytext); return (DO);}
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 46 "projlex.l"
-{ printf("%s - PROGRAM\n", yytext); }
+#line 47 "proj.lex"
+{ printf("%s - PROGRAM\n", yytext); return (PROGRAM);}
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 47 "projlex.l"
-{ printf("%s - VAR\n", yytext); }
+#line 48 "proj.lex"
+{ printf("%s - VAR\n", yytext); return (VAR);}
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 48 "projlex.l"
-{ printf("%s - AS\n", yytext); }
+#line 49 "proj.lex"
+{ printf("%s - AS\n", yytext); return (AS);}
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 49 "projlex.l"
-{ printf("%s - INT\n", yytext); }
+#line 50 "proj.lex"
+{ printf("%s - INT\n", yytext); return (INT);}
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 50 "projlex.l"
-{ printf("%s - BOOl\n", yytext); }
+#line 51 "proj.lex"
+{ printf("%s - BOOl\n", yytext); return (BOOL);}
 	YY_BREAK
 /* eat up one-line comments */
 case 25:
 YY_RULE_SETUP
-#line 53 "projlex.l"
+#line 54 "proj.lex"
 {    }  
 	YY_BREAK
-/* eat up whitespace */
+/* Add to row for each newline and then reset col */
 case 26:
 /* rule 26 can match eol */
 YY_RULE_SETUP
-#line 56 "projlex.l"
+#line 57 "proj.lex"
+{ row++; col=0; }
+	YY_BREAK
+/* eat up whitespace */
+case 27:
+/* rule 27 can match eol */
+YY_RULE_SETUP
+#line 60 "proj.lex"
 {    }  
 	YY_BREAK
 /* Anything else is an error, return as a token for yacc to use */
-case 27:
+case 28:
 YY_RULE_SETUP
-#line 59 "projlex.l"
+#line 65 "proj.lex"
 { char errmsg[] = "Unrecognized character: x";
           errmsg[24] = yytext[0];
           yyerror(errmsg);
           return (yytext[0]); }
 	YY_BREAK
 /* printf( "Unrecognized character: %s\n", yytext ); */ 
-case 28:
+case 29:
 YY_RULE_SETUP
-#line 67 "projlex.l"
+#line 73 "proj.lex"
 ECHO;
 	YY_BREAK
-#line 1117 "lex.yy.c"
+#line 1125 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -2263,12 +2271,15 @@ void yyfree (void * ptr )
 
 /* %ok-for-header */
 
-#line 67 "projlex.l"
+#line 73 "proj.lex"
 
 
 int yywrap(){ return(1); }
 
-int yyerror(char* s);
+int yyerror(char* str){
+    printf("***Error Detected: %s\n on/after row %d, col %d.", str, row, col);
+    return (1);
+}
 
 int main() {
 

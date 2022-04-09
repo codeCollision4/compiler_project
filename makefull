@@ -1,7 +1,7 @@
-ex: exd
+a.out: exd
 		lex ex.lex
 		yacc ex.yacc
-		gcc y.tab.c lex.yy.c -o ex
+		gcc y.tab.c lex.yy.c -o a.out
 
 exd:	ex.lex ex.yacc
 		lex -d ex.lex
