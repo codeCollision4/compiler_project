@@ -1,9 +1,0 @@
-uuprocedure Validate  {
-        begin {
-                DoThis
-                Dothat
-        }
-        end {
-                CleanUp
-        }
-}
