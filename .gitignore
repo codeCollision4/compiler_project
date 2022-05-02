@@ -1,2 +1,11 @@
 
 a.out
+exd
+lex.yy.c
+proj.tab.c
+proj.tab.cacc
+proj.tab.h
+proj.tab.hacc
+y.tab.c
+y.tab.h
+.vscode

@@ -1,6 +1,7 @@
 %{
     /* definitions */  
 #include <stdio.h>
+#include "node.h"
 #include <math.h>
 #include "y.tab.h"
 extern YYSTYPE yylval;
@@ -9,7 +10,9 @@ int yyerror(char* str);
 int col=0;
 int row=0;
 int idents=0;
+
 %}
+
 
 DIGIT      [0-9]
 ID	       [A-Z][A-Z0-9]*   
@@ -21,8 +24,8 @@ WHITESPACE [ \t\n]+
 
 
 ({DIGIT})+  { printf("%s (%d) - num\n", yytext, atoi(yytext)); col+=strlen(yytext); yylval.num=atoi(yytext); return (NUM); }
-false|true { printf("%s - boollit\n", yytext); col+=strlen(yytext); if (strcmp(yytext, "false") == 0) yylval.num = 0; if (strcmp(yytext, "true") == 0) yylval.num = 1; return (BOOLLIT); }
-{ID} { printf("%s - ident\n", yytext);  return (IDENT);}
+false|true { printf("%s - boollit\n", yytext); col+=strlen(yytext); if (strcmp(yytext, "false") == 0) yylval.str = "false"; if (strcmp(yytext, "true") == 0) yylval.str = "true"; return (BOOLLIT); }
+{ID} { printf("%s - ident\n", yytext); strcpy(yylval.str, yytext); return (IDENT);}
     /* col+=strlen(yytext); strcpy(yylval.str, yytext); */
 
 
@@ -30,9 +33,9 @@ false|true { printf("%s - boollit\n", yytext); col+=strlen(yytext); if (strcmp(y
 ")" { printf("%s - RP\n", yytext); return (RP);}
 ":=" { printf("%s - ASGN\n", yytext); return (ASGN);}
 ";" { printf("%s - SC\n", yytext); return (SC);}
-"*"|div|mod { printf("%s - OP2\n", yytext); return (OP2);}
-"+"|"-" { printf("%s - OP3\n", yytext); return (OP3);}
-"="|"!="|"<"|">"|"<="|">=" { printf("%s - OP4\n", yytext); return (OP4);}
+"*"|div|mod { printf("%s - OP2\n", yytext); strcpy(yylval.str, yytext);return (OP2);}
+"+"|"-" { printf("%s - OP3\n", yytext); strcpy(yylval.str, yytext);return (OP3);}
+"="|"!="|"<"|">"|"<="|">=" { printf("%s - OP4\n", yytext); strcpy(yylval.str, yytext); return (OP4);}
 
 writeInt { printf("%s - WRITEINT\n", yytext); return (WRITEINT);}
 readInt { printf("%s - READINT\n", yytext); return (READINT);}
