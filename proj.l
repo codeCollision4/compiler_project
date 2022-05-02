@@ -27,7 +27,7 @@ WHITESPACE [ \t\n]+
 
 ({DIGIT})+  { printf("%s (%d) - num\n", yytext, atoi(yytext)); col+=strlen(yytext); yylval.num=atoi(yytext); return (NUM); }
 false|true { printf("%s - boollit\n", yytext); col+=strlen(yytext); if (strcmp(yytext, "false") == 0) yylval.str = "false"; if (strcmp(yytext, "true") == 0) yylval.str = "true"; return (BOOLLIT); }
-{ID} { printf("%s - ident\n", yytext); col+=strlen(yytext); strcpy(yylval.str, yytext); add_id(yytext, 0, 0); return (IDENT);}
+{ID} { printf("%s - ident\n", yytext); col+=strlen(yytext); yylval.str = yytext;  add_id(yytext, 0, 0); return (IDENT);}
     /* col+=strlen(yytext); strcpy(yylval.str, yytext); */
 
 
@@ -35,9 +35,9 @@ false|true { printf("%s - boollit\n", yytext); col+=strlen(yytext); if (strcmp(y
 ")" { printf("%s - RP\n", yytext); col+=strlen(yytext); return (RP);}
 ":=" { printf("%s - ASGN\n", yytext); col+=strlen(yytext); return (ASGN);}
 ";" { printf("%s - SC\n", yytext); col+=strlen(yytext); return (SC);}
-"*"|div|mod { printf("%s - OP2\n", yytext); col+=strlen(yytext); strcpy(yylval.str, yytext);return (OP2);}
-"+"|"-" { printf("%s - OP3\n", yytext);  col+=strlen(yytext); strcpy(yylval.str, yytext);return (OP3);}
-"="|"!="|"<"|">"|"<="|">=" { printf("%s - OP4\n", yytext); col+=strlen(yytext); strcpy(yylval.str, yytext); return (OP4);}
+"*"|div|mod { printf("%s - OP2\n", yytext); col+=strlen(yytext); yylval.str = yytext;return (OP2);}
+"+"|"-" { printf("%s - OP3\n", yytext);  col+=strlen(yytext); yylval.str = yytext;return (OP3);}
+"="|"!="|"<"|">"|"<="|">=" { printf("%s - OP4\n", yytext); col+=strlen(yytext); yylval.str = yytext; return (OP4);}
 
 writeInt { printf("%s - WRITEINT\n", yytext); col+=strlen(yytext); return (WRITEINT);}
 readInt { printf("%s - READINT\n", yytext); col+=strlen(yytext); return (READINT);}

@@ -40,23 +40,23 @@ int yyerror(char* str);
 program: PROGRAM declarations BEG statementSequence END
         {   Tree parseTree;
             parseTree = make_node(nostr, none, prog, $2, $4, NULL);
-            print_tree(parseTree);
+            print_tree(parseTree, 0);
         };
 declarations: 
  /* empty */ {;}
 | VAR IDENT AS type SC declarations
         {
-            $$ = make_node($2, none, declare, $4, $6, NULL);
+            $$ = make_node(nostr, none, declare, $4, $6, NULL);
 
         };
 type: INT
         {
-            $$ = make_node("integer", none, type, NULL, NULL, NULL);
+            $$ = make_node(nostr, none, type, NULL, NULL, NULL);
 
         } 
         | BOOL
         {
-            $$ = make_node("boolean", none, type, NULL, NULL, NULL);
+            $$ = make_node(nostr, none, type, NULL, NULL, NULL);
 
         };
 statementSequence: 
@@ -85,11 +85,11 @@ statement: assignment
         };
 assignment: IDENT ASGN expression 
         {
-            $$ = make_node($1, none, asgn, $3, NULL, NULL);
+            $$ = make_node(nostr, none, asgn, $3, NULL, NULL);
 
         }| IDENT ASGN READINT
         {
-            $$ = make_node($1, none, rInt, NULL, NULL, NULL);
+            $$ = make_node(nostr, none, rInt, NULL, NULL, NULL);
 
         };
 ifStatement: IF expression THEN statementSequence elseClause END
@@ -120,12 +120,12 @@ expression: simpleExpression
 
         }| simpleExpression OP4 simpleExpression
         {
-            $$ = make_node($2, none, expr, $1, $3, NULL);
+            $$ = make_node(nostr, none, OP4expr, $1, $3, NULL);
 
         };
 simpleExpression: term OP3 term 
         {
-            $$ = make_node($2, none, sexpr, $1, $3, NULL);
+            $$ = make_node(nostr, none, OP3sexpr, $1, $3, NULL);
 
         }| term
         {
@@ -134,7 +134,7 @@ simpleExpression: term OP3 term
         };
 term: factor OP2 factor 
         {
-            $$ = make_node($2, none, term, $1, $3, NULL);
+            $$ = make_node(nostr, none, OP2term, $1, $3, NULL);
 
         }| factor
         {
@@ -143,15 +143,15 @@ term: factor OP2 factor
         };
 factor: IDENT 
         {
-            $$ = make_node($1, none, fact, NULL, NULL, NULL);
+            $$ = make_node($1, none, ifact, NULL, NULL, NULL);
 
         }| NUM 
         {
-            $$ = make_node(nostr, $1, fact, NULL, NULL, NULL);
+            $$ = make_node(nostr,none, nfact, NULL, NULL, NULL);
 
         }| BOOLLIT 
         {
-            $$ = make_node($1, none, fact, NULL, NULL, NULL);
+            $$ = make_node($1, none, ifact, NULL, NULL, NULL);
 
         }| LP expression RP
         {

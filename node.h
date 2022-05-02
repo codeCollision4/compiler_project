@@ -2,10 +2,11 @@
 #define NODE_H
 
 
-enum nodeTypes {prog, declare, type, stateSeq, state, asgn, rInt, ifstmt, elsestmt, whilestmt, expr, sexpr, term, fact, wInt};
+enum nodeTypes {prog, declare, type, stateSeq, state, asgn, rInt, ifstmt, elsestmt, whilestmt, expr, OP4expr, OP3sexpr, sexpr, OP2term, term, ifact, nfact, fact, wInt};
 
 typedef struct nodeTag {
     int data;
+    char str[1500];
     int nodeType;
     struct nodeTag *first;
     struct nodeTag *second;
@@ -15,6 +16,6 @@ typedef struct nodeTag {
 
 
 Tree make_node(char* str, int val, int type_id, Tree p1, Tree p2, Tree p3);
-void print_tree(Tree t);
+void print_tree(Tree t, int indent);
 
 #endif

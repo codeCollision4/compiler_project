@@ -6,7 +6,7 @@
 struct SymTableEntry {
     char identifier[50]; //Id string
     int init; // 0 for not, 1 for initialized
-    int type; // 0 for int , 1 for bool
+    int type; // uses enum above
     UT_hash_handle hh;
 };
 
