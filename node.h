@@ -1,6 +1,7 @@
 #ifndef NODE_H
 #define NODE_H
 
+
 enum nodeTypes {prog, declare, type, stateSeq, state, asgn, rInt, ifstmt, elsestmt, whilestmt, expr, sexpr, term, fact, wInt};
 
 typedef struct nodeTag {
@@ -14,5 +15,6 @@ typedef struct nodeTag {
 
 
 Tree make_node(char* str, int val, int type_id, Tree p1, Tree p2, Tree p3);
+void print_tree(Tree t);
 
 #endif

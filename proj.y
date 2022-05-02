@@ -4,15 +4,15 @@
 #include <string.h>
 #include <stdlib.h>
 #include "node.h"
+#include "symboltable.h"
 #include <math.h>
 #include "y.tab.h"
 #define none -1
 #define nostr ""
+#define IDLENGTH 50
 int yylex(void);
 int yywrap();
 int yyerror(char* str);
-
-
 %}
 
  /* Processing top most level ie program */
@@ -40,7 +40,7 @@ int yyerror(char* str);
 program: PROGRAM declarations BEG statementSequence END
         {   Tree parseTree;
             parseTree = make_node(nostr, none, prog, $2, $4, NULL);
-
+            print_tree(parseTree);
         };
 declarations: 
  /* empty */ {;}
@@ -161,7 +161,6 @@ factor: IDENT
 
 
 %%
-
 
 
 int main()
